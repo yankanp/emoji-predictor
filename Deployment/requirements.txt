@@ -1,0 +1,7 @@
+flask
+numpy
+pandas
+# tensorflow-macos
+keras
+scikit-learn
+flask-cors

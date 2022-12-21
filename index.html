@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Emoji Predictor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  console.log('function invoked 1')
+  function myFunction() {
+      var text=document.getElementById("text").value
+      console.log(text)
+      $.get( 'http://13.214.142.204/predict?text='+text, function( data ) {
+           console.log(JSON.stringify(data))
+           const res=data
+           console.log(data.emoji)
+           document.getElementById('text').value = document.getElementById('text').value+' '+data.emoji;
+          //  $('#demo').html(res.emoji);
+      });
+  }
+
+  
+</script>
+<script>
+  $( document ).ready(function() {
+    $( "#reset-btn" ).click(function() {
+      $('#text').val('');
+    });
+  });
+  </script>
+<style>
+body {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('forestbridge.jpeg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+h1{
+  text-transform: uppercase;
+    font-weight: 800;
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 28px;
+    margin: 0;
+    padding: 0 0 20px 0;
+}
+.middle {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 30vh;
+}
+textarea#text {
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    padding: 20px;
+}
+button#submt-btn {
+    display: block;
+    width: 100%;
+    background: #02b302;
+    border: 0;
+    padding: 12px 10px;
+    border-radius: 4px;
+    color: #FFF;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+button#reset-btn {
+    display: block;
+    width: 100%;
+    background: #e34403;
+    border: 0;
+    padding: 12px 10px;
+    border-radius: 4px;
+    color: #FFF;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="middle">
+    <h1>Emoji Predictor Based on given Sentence</h1>
+    <textarea  id="text" name="text" rows="4" cols="50" placeholder="Enter a sample text to get an emoji!"></textarea>
+    <button id="submt-btn" onclick="myFunction()">Get Emoji</button>
+    <button id="reset-btn">Reset Text</button>
+    <!-- <p id="demo"></p>  -->
+  </div>
+</div>
+
+</body>
+</html>

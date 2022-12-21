@@ -1,0 +1,46 @@
+Dataset:
+https://www.kaggle.com/datasets/hariharasudhanas/twitter-emoji-prediction
+https://github.com/Defcon27/Emoji-Prediction-using-Deep-Learning
+
+
+docker build -t emoji-predictor-app:latest .
+
+docker run -d -p 80:5000 emoji-predictor-app
+
+https://www.makeuseof.com/top-emojis-explained-cheat-sheet/
+https://www.youtube.com/watch?v=5dMXyiWddYs
+
+0,😜    Face with Stuck-Out Tongue and Winking Eye    Fun, joking, or cheeky
+1,📸    photography
+2,😍    Smiling Face with Heart-Eyes    Love or adoration
+3,😂    Face with Tears of Joy    Extreme happiness or laughter
+4,😉    Winking Face    Joking or being cheeky
+5,🎄    Christmas Tree
+7,🔥    Fire    Hot or excellent
+8,😘    Face Throwing a Kiss    Kissing someone, or general expression of love
+9,❤     gratitude, love, happiness, hope, or even flirtatiousness
+10,😁    Grinning Face with Smiling Eyes    Glowing, beaming happiness
+11,🇺🇸    USA flag
+12,☀     Snowflake
+13,✨    Sparkles    Positive, happy, or celebration
+6,😎     Smiling Face with Sunglasses    Cool or confident
+14,😊    Smiling Face with Smiling Eyes    Positive or happy
+15,💯    Hundred Points Symbol    100 percent approval
+
+
+
+
+Can remove since give duplicate meaning:
+
+18,💜,18 (love, support, close bonds, and admiration for things that have some relation to the color purple.)
+15,💕,15 love
+14,💙,14 love, support, admiration, happiness, and excitement
+6,📷,6 classic camera
+
+
+ssh -i Deployment/emoji.pem ec2-user@18.143.176.107
+scp -r -i Deployment/emoji.pem Deployment/ ec2-user@18.143.176.107:/home/ec2-user/
+docker login -u "priyankankiru" -p "###" docker.io
+docker build -f Dockerfile -t emoji-service .
+docker tag emoji-service priyankankiru/emoji
+docker push priyankankiru/emoji
